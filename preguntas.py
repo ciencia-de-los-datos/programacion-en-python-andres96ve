@@ -21,7 +21,7 @@ def pregunta_01():
     214
 
     """
-    archivo=open(".\data.csv")
+    archivo=open("data.csv")
     datos=[]
     suma=0
     for i in range(40):
@@ -49,7 +49,7 @@ def pregunta_02():
     ]
 
     """
-    archivo=open(".\data.csv")
+    archivo=open("data.csv")
     datos=[]
     datos_primeracol=[]
     datos_no_repetido=[]
@@ -91,7 +91,7 @@ def pregunta_03():
     ]
 
     """
-    archivo=open(".\data.csv")
+    archivo=open("data.csv")
     [suma0,suma1,suma2,suma3,suma4]=[0,0,0,0,0]
     sumas=[]
     datos=[]
@@ -152,7 +152,7 @@ def pregunta_04():
     ]
 
     """
-    archivo=open(".\data.csv")
+    archivo=open("data.csv")
     meses=[]
     sumas=[0,0,0,0,0,0,0,0,0,0,0,0]
     datos=[]
@@ -196,7 +196,7 @@ def pregunta_05():
     ]
 
     """
-    archivo=open(".\data.csv")
+    archivo=open("data.csv")
 
     data=[]
     datos=[]
@@ -266,7 +266,7 @@ def pregunta_06():
     ]
 
     """
-    with open(".\data.csv") as archivo:
+    with open("data.csv") as archivo:
       
         datos=[]
         datos_cuartacol=[]
@@ -324,7 +324,7 @@ def pregunta_07():
     ]
 
     """
-    with open(".\data.csv") as datos:
+    with open("data.csv") as datos:
         datos=[n.split("\t") for n in datos]
         datos_primeracol=[n[0] for n in datos]
         datos_segundacol=[n[1] for n in datos]
@@ -374,7 +374,7 @@ def pregunta_08():
     ]
 
     """
-    with open(".\data.csv") as datos:
+    with open("data.csv") as datos:
         datos=[n.split("\t") for n in datos]
         datos_primeracol=[n[0] for n in datos]
         datos_segundacol=[n[1] for n in datos]
@@ -423,7 +423,7 @@ def pregunta_09():
     }
 
     """
-    with open(".\data.csv") as archivo:
+    with open("data.csv") as archivo:
       
         datos=[]
         datos_cuartacol=[]
@@ -487,7 +487,7 @@ def pregunta_10():
 
 
     """
-    with open(".\data.csv") as datos:
+    with open("data.csv") as datos:
         datos=[n.split("\t") for n in datos]
         datos_primeracol=[n[0] for n in datos]
         datos_cuartacol=[n[3] for n in datos]
@@ -526,7 +526,7 @@ def pregunta_11():
 
 
     """
-    with open(".\data.csv") as datos:
+    with open("data.csv") as datos:
         datos=[n.split("\t") for n in datos]
         datos_segundacol=[n[1] for n in datos]
         datos_cuartacol=[n[3] for n in datos]
@@ -571,7 +571,7 @@ def pregunta_12():
     }
 
     """
-    with open(".\data.csv") as datos:
+    with open("data.csv") as datos:
         datos=[linea.replace("\n","") for linea in datos]
         datos=[linea.split("\t") for linea in datos]
         
