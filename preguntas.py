@@ -1,3 +1,4 @@
+
 """
 Laboratorio de Programación Básica en Python para Manejo de Datos
 -----------------------------------------------------------------------------------------
@@ -21,7 +22,17 @@ def pregunta_01():
     214
 
     """
-    return
+    archivo=open(".\data.csv")
+    datos=[]
+    suma=0
+    for i in range(40):
+            lectura=archivo.readline().split("\t")
+            datos.append(lectura)
+
+    for n in range(len(datos)):
+            suma += int(datos[n][1])
+
+    return suma
 
 
 def pregunta_02():
@@ -39,7 +50,31 @@ def pregunta_02():
     ]
 
     """
-    return
+    archivo=open(".\data.csv")
+    datos=[]
+    datos_primeracol=[]
+    datos_no_repetido=[]
+    numeros_veces=[]
+    tuplas=()
+    lista_tuplas=[]
+    for i in range(40):
+            lectura=archivo.readline().split("\t")
+            datos.append(lectura)
+    for n in range(len(datos)):
+            datos_primeracol.append(datos[n][0])
+
+    for dato in datos_primeracol:
+            if dato not in datos_no_repetido:
+                    datos_no_repetido.append(dato)
+    datos_no_repetido.sort()
+    for letra in datos_no_repetido:
+            numeros_veces.append(datos_primeracol.count(letra))
+
+
+    for a in range(len(datos_no_repetido)):
+            lista_tuplas.append((datos_no_repetido[a],numeros_veces[a]))
+            
+    return lista_tuplas 
 
 
 def pregunta_03():
@@ -57,7 +92,43 @@ def pregunta_03():
     ]
 
     """
-    return
+    archivo=open(".\data.csv")
+    [suma0,suma1,suma2,suma3,suma4]=[0,0,0,0,0]
+    sumas=[]
+    datos=[]
+    datos_primeracol=[]
+    datos_segundacol=[]
+    datos_no_repetido=[]
+    lista_tuplas=[]
+    for i in range(40):
+            lectura=archivo.readline().split("\t")
+            datos.append(lectura)
+    for n in range(len(datos)):
+            datos_primeracol.append(datos[n][0])
+    for k in range(len(datos)):
+            datos_segundacol.append(datos[k][1])
+
+
+    for dato in datos_primeracol:
+            if dato not in datos_no_repetido:
+                    datos_no_repetido.append(dato)
+    datos_no_repetido.sort()
+
+    for p in range(len(datos_primeracol)):
+            if datos_primeracol[p]==datos_no_repetido[0]:
+                    suma0 +=int(datos_segundacol[p])
+            elif datos_primeracol[p]==datos_no_repetido[1]:
+                    suma1 +=int(datos_segundacol[p])
+            elif datos_primeracol[p]==datos_no_repetido[2]:
+                    suma2 +=int(datos_segundacol[p])
+            elif datos_primeracol[p]==datos_no_repetido[3]:
+                    suma3 +=int(datos_segundacol[p])
+            elif datos_primeracol[p]==datos_no_repetido[4]:
+                    suma4 +=int(datos_segundacol[p])
+    sumas +=suma0,suma1,suma2,suma3,suma4
+    for q in range(len(sumas)):
+            lista_tuplas.append((datos_no_repetido[q],sumas[q]))
+    return lista_tuplas
 
 
 def pregunta_04():
@@ -82,7 +153,33 @@ def pregunta_04():
     ]
 
     """
-    return
+    archivo=open(".\data.csv")
+    meses=[]
+    sumas=[0,0,0,0,0,0,0,0,0,0,0,0]
+    datos=[]
+    datos_terceracol=[]
+    lista_tuplas=[]
+    nuevos_datos=[]
+    for i in range(40):
+            lectura=archivo.readline().split("\t")
+            datos.append(lectura)
+    for n in range(len(datos)):
+            datos_terceracol.append(datos[n][2])
+
+    for j in range(len(datos_terceracol)):
+            nuevos_datos.append(datos_terceracol[j].split("-"))
+    for dato in nuevos_datos:
+            if dato[1] not in meses:
+                    meses.append(dato[1])
+    meses.sort()
+
+    for u in range(len(meses)):
+            for t in range(len(datos_terceracol)):
+                    if meses[u] in nuevos_datos[t][1]:
+                            sumas[u] +=1
+    for q in range(len(sumas)):
+            lista_tuplas.append((meses[q],sumas[q]))
+    return lista_tuplas
 
 
 def pregunta_05():
@@ -100,7 +197,52 @@ def pregunta_05():
     ]
 
     """
-    return
+    archivo=open(".\data.csv")
+
+    data=[]
+    datos=[]
+    datos_mayores=[0,0,0,0,0]
+    datos_menores=[0,0,0,0,0]
+    datos_primeracol=[]
+    datos_segundacol=[]
+    datos_no_repetido=[]
+    lista_tuplas=[]
+    for i in range(40):
+            lectura=archivo.readline().split("\t")
+            datos.append(lectura)
+    for n in range(len(datos)):
+            datos_primeracol.append(datos[n][0])
+
+    for k in range(len(datos)):
+            datos_segundacol.append(datos[k][1])
+
+
+    dato_mayor=datos_segundacol[0]
+    dato_menor=datos_segundacol[0]
+    for dato in datos_primeracol:
+            if dato not in datos_no_repetido:
+                    datos_no_repetido.append(dato)
+    datos_no_repetido.sort()
+
+    for p in range(len(datos_no_repetido)): 
+            dato_mayor=0
+            for n in range(len(datos_primeracol)):   
+                    if datos_primeracol[n]==datos_no_repetido[p] and int(datos_segundacol[n])>int(dato_mayor):
+                                    dato_mayor=datos_segundacol[n]
+                                    datos_mayores[p]=dato_mayor
+                                    
+    for q in range(len(datos_no_repetido)): 
+            dato_menor=datos_mayores[q]        
+            for o in range(len(datos_primeracol)):   
+                    
+                    if datos_primeracol[o]==datos_no_repetido[q] and int(datos_segundacol[o])<int(dato_menor):
+                                    dato_menor=datos_segundacol[o]
+                                    datos_menores[q]=dato_menor
+    for r in range(len(datos_no_repetido)):
+            lista_tuplas.append((datos_no_repetido[r],int(datos_mayores[r]),int(datos_menores[r])))
+
+
+    return lista_tuplas
 
 
 def pregunta_06():
@@ -125,7 +267,41 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open(".\data.csv") as archivo:
+      
+        datos=[]
+        datos_cuartacol=[]
+        nuevos_datos=[]
+        diccionario={}
+        
+        lista_tuplas=[]
+
+        archivo=[linea.replace("\n","") for linea in archivo]
+        archivo=[linea.split("\t") for linea in archivo]
+        datos=archivo
+        
+        for n in range(len(datos)):
+                datos_cuartacol.append(datos[n][4])
+
+        for j in range(len(datos_cuartacol)):
+                nuevos_datos.append(datos_cuartacol[j].split(","))
+
+        for dato in nuevos_datos:
+                for cada in dato:
+                        clave,valor=cada.split(":")
+                        if clave not in diccionario:
+                                diccionario[clave] = [int(valor)]
+                        else:
+                                diccionario[clave].append(int(valor))
+        for clave in diccionario:
+                valores=diccionario[clave]
+                maximo_dato=max(valores)
+                minimo_dato=min(valores)
+                lista_tuplas.append((clave,minimo_dato,maximo_dato))
+                
+        lista_tuplas.sort()
+
+    return lista_tuplas
 
 
 def pregunta_07():
@@ -149,7 +325,32 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open(".\data.csv") as datos:
+        datos=[n.split("\t") for n in datos]
+        datos_primeracol=[n[0] for n in datos]
+        datos_segundacol=[n[1] for n in datos]
+        lista=[]
+        numeros=[]
+        letra=[]
+        lista_tuplas=[]
+        for dato in datos_segundacol:
+                if dato not in numeros:
+                        numeros.append(dato)
+        
+        numeros.sort()
+        for m in range(len(numeros)):
+                lista=[]
+                for numero,letras in zip(datos_segundacol,datos_primeracol):
+                        pares=numero,letras
+
+                        if pares[0]==numeros[m]:
+                                lista.append(pares[1])
+                                       
+                letra.append(lista)
+        for o in range(len(numeros)):
+
+                lista_tuplas.append((int(numeros[o]),letra[o]))
+    return lista_tuplas
 
 
 def pregunta_08():
@@ -174,7 +375,33 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open(".\data.csv") as datos:
+        datos=[n.split("\t") for n in datos]
+        datos_primeracol=[n[0] for n in datos]
+        datos_segundacol=[n[1] for n in datos]
+        lista=[]
+        numeros=[]
+        letra=[]
+        lista_tuplas=[]
+        for dato in datos_segundacol:
+                if dato not in numeros:
+                        numeros.append(dato)
+        
+        numeros.sort()
+        for m in range(len(numeros)):
+                lista=[]
+                for numero,letras in zip(datos_segundacol,datos_primeracol):
+                        pares=numero,letras
+
+                        if pares[0]==numeros[m] and pares[1] not in lista:
+                                lista.append(pares[1])
+                                lista.sort()
+                                       
+                letra.append(lista)
+        for o in range(len(numeros)):
+
+                lista_tuplas.append((int(numeros[o]),letra[o]))
+    return lista_tuplas
 
 
 def pregunta_09():
@@ -197,7 +424,50 @@ def pregunta_09():
     }
 
     """
-    return
+    with open(".\data.csv") as archivo:
+      
+        datos=[]
+        datos_cuartacol=[]
+        nuevos_datos=[]
+        diccionario={}
+        diccionario2={}
+        diccionario2_ord={}
+        
+        lista_tuplas=[]
+
+        archivo=[linea.replace("\n","") for linea in archivo]
+        archivo=[linea.split("\t") for linea in archivo]
+        datos=archivo
+        
+        for n in range(len(datos)):
+                datos_cuartacol.append(datos[n][4])
+
+        for j in range(len(datos_cuartacol)):
+                nuevos_datos.append(datos_cuartacol[j].split(","))
+
+        
+        for dato in nuevos_datos:
+                
+                for cada in dato:
+                        clave,valor=cada.split(":")
+                        if clave not in diccionario:
+                                diccionario[clave] = [int(valor)]
+                        else:
+                                diccionario[clave].append(int(valor))
+        
+        for clave in diccionario:
+                
+                valores=diccionario[clave]
+                
+                cant=len(valores)
+                diccionario2[clave]=len(valores)
+                
+        lista_ord_diccionario2=sorted(diccionario2.items())
+        
+        for key, value in lista_ord_diccionario2:
+                diccionario2_ord[key]=value
+
+    return diccionario2_ord
 
 
 def pregunta_10():
@@ -218,7 +488,25 @@ def pregunta_10():
 
 
     """
-    return
+    with open(".\data.csv") as datos:
+        datos=[n.split("\t") for n in datos]
+        datos_primeracol=[n[0] for n in datos]
+        datos_cuartacol=[n[3] for n in datos]
+        datos_quintacol=[n[4] for n in datos]
+        lista_cant_cuartacol=[]
+        lista_cant_quintacol=[]
+        lista_tuplas=[]
+
+        for dato in datos_cuartacol:
+                lista_cant_cuartacol.append(len(dato.split(",")))
+        
+        for date in datos_quintacol:
+                lista_cant_quintacol.append(len(date.split(",")))
+        
+        for o in range(len(datos_primeracol)):
+                lista_tuplas.append((datos_primeracol[o],lista_cant_cuartacol[o],lista_cant_quintacol[o]))
+
+    return lista_tuplas
 
 
 def pregunta_11():
@@ -239,7 +527,34 @@ def pregunta_11():
 
 
     """
-    return
+    with open(".\data.csv") as datos:
+        datos=[n.split("\t") for n in datos]
+        datos_segundacol=[n[1] for n in datos]
+        datos_cuartacol=[n[3] for n in datos]
+        datos_cuartacol=[n.split(",") for n in datos_cuartacol]
+        letras=[]
+        numeros=[]
+        numeros_final=[]
+        diccionario={}
+        
+
+        for dato in datos_cuartacol:
+                for letra in dato:
+                        if letra not in letras:
+                                letras.append(letra)
+        letras.sort()
+        for m in range(len(letras)):
+                lista=[]
+                for p in range(len(datos_cuartacol)):
+                        if letras[m] in datos_cuartacol[p]:
+                                lista.append(int(datos_segundacol[p]))
+                numeros.append(lista)
+        
+        for sublista in numeros:
+                numeros_final.append(sum(sublista))
+
+        diccionario=dict(zip(letras,numeros_final))
+    return diccionario
 
 
 def pregunta_12():
@@ -257,4 +572,49 @@ def pregunta_12():
     }
 
     """
-    return
+    with open(".\data.csv") as datos:
+        datos=[linea.replace("\n","") for linea in datos]
+        datos=[linea.split("\t") for linea in datos]
+        
+        datos_primeracol=[n[0] for n in datos]
+        datos_quintacol=[n[4] for n in datos]
+        datos_quintacol=[n.split(",") for n in datos_quintacol]
+        letras=[]
+        lista2=[]
+        lista3=[]
+        diccionario={}
+        diccionario_final={}
+
+        for dato in datos_primeracol:
+                if dato not in letras:
+                        letras.append(dato)
+        
+        
+        for dato in datos_quintacol:      
+                diccionario={}
+                for cada in dato:       
+                        clave,valor=cada.split(":")
+                        if clave not in diccionario:
+                                diccionario[clave] = int(valor)
+                        else:
+                                diccionario[clave].append(int(valor))
+                lista=list(diccionario.values())
+                lista2.append(sum(lista))
+       
+               
+        for m in range(len(letras)):
+                lis=[]
+                for letra,numeros in zip(datos_primeracol,lista2):
+
+                        if letra==letras[m]:
+                                lis.append(int(numeros))                         
+                lista3.append(sum(lis))
+        
+        diccionario_final_desord=dict(zip(letras,lista3))
+
+        lista_diccionario_final=sorted(diccionario_final_desord.items())
+        
+        for key, value in lista_diccionario_final :
+                diccionario_final[key]=value
+
+    return diccionario_final 
